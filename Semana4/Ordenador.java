@@ -13,6 +13,8 @@
    la red, no con datos raros.
    ============================================================ */
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Ordenador {
 
     private static long comparaciones = 0;
@@ -58,16 +60,24 @@ public class Ordenador {
      * Mide el antes y el despues con datos ya ordenados.
      */
     public static void burbuja(LecturaSensor[] datos) {
-        reiniciarContadores();
-        int n = datos.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - 1 - i; j++) {
-                if (comparar(datos[j], datos[j + 1]) > 0) {
-                    intercambiar(datos, j, j + 1);
-                }
+    reiniciarContadores();
+    int n = datos.length;
+
+    for (int i = 0; i < n - 1; i++) {
+        boolean huboIntercambio = false;
+
+        for (int j = 0; j < n - 1 - i; j++) {
+            if (comparar(datos[j], datos[j + 1]) > 0) {
+                intercambiar(datos, j, j + 1);
+                huboIntercambio = true;
             }
         }
+
+        if (!huboIntercambio) {
+            break;
+        }
     }
+}
 
     /**
      * Ordenamiento por seleccion. Busca el menor y lo pone al inicio.
@@ -174,17 +184,24 @@ public class Ordenador {
     }
 
     private static int particionar(LecturaSensor[] datos, int inicio, int fin) {
-        LecturaSensor pivote = datos[inicio];
-        int limite = inicio;
-        for (int i = inicio + 1; i <= fin; i++) {
-            if (comparar(datos[i], pivote) < 0) {
-                limite++;
-                intercambiar(datos, limite, i);
-            }
+    int indicePivote = ThreadLocalRandom.current().nextInt(inicio, fin + 1);
+
+    intercambiar(datos, inicio, indicePivote);
+
+    LecturaSensor pivote = datos[inicio];
+    int limite = inicio;
+
+    for (int i = inicio + 1; i <= fin; i++) {
+        if (comparar(datos[i], pivote) < 0) {
+            limite++;
+            intercambiar(datos, limite, i);
         }
-        intercambiar(datos, inicio, limite);
-        return limite;
     }
+
+    intercambiar(datos, inicio, limite);
+    return limite;
+}
+
 
     /**
      * HeapSort. Ordena usando una estructura llamada monticulo.

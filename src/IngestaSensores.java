@@ -1,6 +1,6 @@
 /* ============================================================
    PLATAFORMA DE MONITOREO AMBIENTAL URBANO
-   IngestaSensores - SEMANA 3
+   IngestaSensores - SEMANA 4
 
    Este es el ÚNICO punto de entrada de todo el proyecto.
 
@@ -38,6 +38,11 @@ public class IngestaSensores {
         // Los experimentos son parte de esta misma aplicación.
         //
         ejecutarExperimentosSemanaTres();
+
+        // =====================================================
+        // SEMANA 4 - ORDENAMIENTO
+        // =====================================================
+        ejecutarExperimentosSemanaCuatro();
     }
 
     /**
@@ -45,6 +50,7 @@ public class IngestaSensores {
      * del proyecto.
      */
     private static void ejecutarExperimentosSemanaTres() {
+
         System.out.println();
         System.out.println("====================================================");
         System.out.println("       SEMANA 3 - BUSQUEDA Y EFICIENCIA");
@@ -55,6 +61,21 @@ public class IngestaSensores {
         BancoDePruebas.experimentoDos();
         BancoDePruebas.experimentoTres();
         BancoDePruebas.experimentoCuatro();
+    }
+
+    /**
+     * Ejecuta las pruebas de la Semana 4 desde el único main
+     * del proyecto.
+     */
+    private static void ejecutarExperimentosSemanaCuatro() {
+
+        System.out.println();
+        System.out.println("====================================================");
+        System.out.println("       SEMANA 4 - ORDENAMIENTO");
+        System.out.println("====================================================");
+        System.out.println();
+
+        BancoDeOrdenamiento.ejecutarExperimentos();
     }
 
     private static void imprimirResumenIngesta(
@@ -81,6 +102,7 @@ public class IngestaSensores {
         System.out.println("=== PERFIL HORARIO DE LA CIUDAD ===");
 
         for (int h = 0; h < 24; h++) {
+
             System.out.printf(
                     "Hora %02d -> PM2.5 promedio: %.2f%n",
                     h,
@@ -116,9 +138,11 @@ public class IngestaSensores {
                 }
 
                 if (!repositorio.agregar(lectura)) {
+
                     System.err.println(
                             "ADVERTENCIA: no se pudo almacenar "
                             + lectura.getIdSensor());
+
                     continue;
                 }
 
@@ -142,6 +166,7 @@ public class IngestaSensores {
         }
 
         try {
+
             double temperatura = Double.parseDouble(campos[2]);
             double humedad = Double.parseDouble(campos[3]);
             double pm25 = Double.parseDouble(campos[4]);
@@ -154,6 +179,7 @@ public class IngestaSensores {
                     pm25);
 
         } catch (NumberFormatException e) {
+
             descartadasPorFormato++;
             return null;
         }
