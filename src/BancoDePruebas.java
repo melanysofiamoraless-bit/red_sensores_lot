@@ -1,4 +1,3 @@
-package src;
 
 /* ============================================================
    PLATAFORMA DE MONITOREO AMBIENTAL URBANO

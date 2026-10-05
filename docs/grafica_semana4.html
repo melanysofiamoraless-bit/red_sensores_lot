@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Semana 4 - Comparación de algoritmos</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .grafica {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Semana 4 - Comparación de algoritmos de ordenamiento</h1>
+
+    <div class="grafica">
+        <canvas id="graficaOrdenamiento"></canvas>
+    </div>
+
+    <script>
+        const datos = {
+            labels: [1000, 10000, 100000],
+
+            datasets: [
+                {
+                    label: 'Inserción',
+                    data: [242787, 24938233, 2497222762],
+                    borderWidth: 2
+                },
+                {
+                    label: 'MergeSort',
+                    data: [8684, 120396, 1536325],
+                    borderWidth: 2
+                }
+            ]
+        };
+
+        new Chart(
+            document.getElementById('graficaOrdenamiento'),
+            {
+                type: 'line',
+                data: datos,
+
+                options: {
+                    responsive: true,
+
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Comparaciones según el tamaño de los datos'
+                        }
+                    },
+
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Cantidad de lecturas (n)'
+                            }
+                        },
+
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Número de comparaciones'
+                            }
+                        }
+                    }
+                }
+            }
+        );
+    </script>
+
+</body>
+</html>
