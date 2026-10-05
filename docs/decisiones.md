@@ -67,6 +67,7 @@ Medición de eficiencia
 
 La Semana 4 podrá extender esta misma arquitectura para estudiar ordenamiento.
 
+
 ## 7. Elección del pivote en QuickSort — DEC-04
 
 En la primera prueba de QuickSort se utilizó el primer elemento del arreglo como pivote.
@@ -90,3 +91,5 @@ Después se ordenaron las lecturas por PM2.5. Como consecuencia, el arreglo dej�
 Para comprobar que la lectura seguía existiendo, se utilizó una búsqueda lineal, que la encontró en la posición 2099 realizando 2100 comparaciones.
 
 Por lo tanto, se decide que antes de utilizar búsqueda binaria se debe verificar que los datos estén ordenados según el mismo criterio utilizado para realizar la búsqueda.
+=======
+
